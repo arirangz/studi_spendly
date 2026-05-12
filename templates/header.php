@@ -1,4 +1,6 @@
 <?php
+require_once "libs/config.php";
+require_once "libs/pdo.php";
 
 $mainMenu = [
     "index.php" => "Accueil",
@@ -27,7 +29,7 @@ $mainMenu = [
                 </a> </div>
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <?php foreach ($mainMenu as $page => $title) { ?>
-                        <li><a href="<?= $page ?>" class="nav-link px-2"><?=$title ?></a></li>
+                        <li class="nav-item"><a href="<?= $page ?>" class="nav-link px-2"><?=$title ?></a></li>
                 <?php } ?>
             </ul>
             <div class="col-md-3 text-end"> <button type="button" class="btn btn-outline-primary me-2">Login</button> <button type="button" class="btn btn-primary">Sign-up</button> </div>
