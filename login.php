@@ -13,12 +13,14 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     }
 
     if (count($errors) === 0) {
-        $res = addUser($pdo, $_POST["email"], $_POST["password"]);
+        $user = verifyUserLogin($pdo, $_POST["email"], $_POST["password"]);
 
-        if ($res) {
-            header("Location: login.php");
+        if ($user) {
+            // On veut le connecter avec les sessions
+
         } else {
-            $errors[] = "Une erreur s'est produite lors de votre inscription";
+            // On va générer une erreur
+            $errors[] = "Email ou mot de passe incorrect";
         }
     }
 
@@ -34,8 +36,8 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 
 
 
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <h1>Inscription</h1>
+    <div class="row flex-lg-row-reverse align-items-center g-5">
+        <h1>Connexion</h1>
 
         <?php foreach ($errors as $key => $error): ?>
             <div class="alert alert-danger">
@@ -51,7 +53,7 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                 <label for="password" class="form-label">Mot de passe</label>
                 <input type="password" name="password" id="password" class="form-control">
             </div>
-            <input type="submit" value="S'inscrire" class="btn btn-primary">
+            <input type="submit" value="Se connecter" class="btn btn-primary">
         </form>
     </div>
 </div>

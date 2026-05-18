@@ -32,7 +32,7 @@ $mainMenu = [
                         <li class="nav-item"><a href="<?= $page ?>" class="nav-link px-2"><?=$title ?></a></li>
                 <?php } ?>
             </ul>
-            <div class="col-md-3 text-end"> <button type="button" class="btn btn-outline-primary me-2">Login</button> <button type="button" class="btn btn-primary">Sign-up</button> </div>
+            <div class="col-md-3 text-end"> <button type="button" class="btn btn-outline-primary me-2">Login</button> <a href="inscription.php" class="btn btn-primary">Inscription</a> </div>
         </header>
     </div>
 
