@@ -17,7 +17,11 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 
         if ($user) {
             // On veut le connecter avec les sessions
-
+            session_regenerate_id(true);
+            $_SESSION["user"] = ["id_user" => $user["id_user"], "email" => $user["email"]];
+            header('location: index.php');
+            exit;
+            
         } else {
             // On va générer une erreur
             $errors[] = "Email ou mot de passe incorrect";

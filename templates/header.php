@@ -2,10 +2,16 @@
 require_once "libs/config.php";
 require_once "libs/pdo.php";
 
+session_start();
+
 $mainMenu = [
     "index.php" => "Accueil",
     "a-propos.php" => "A propos"
 ];
+
+if (isset($_SESSION["user"])) {
+    $mainMenu["depenses.php"] = "Mes dépenses";
+}
 
 ?>
 
@@ -32,7 +38,18 @@ $mainMenu = [
                         <li class="nav-item"><a href="<?= $page ?>" class="nav-link px-2"><?=$title ?></a></li>
                 <?php } ?>
             </ul>
-            <div class="col-md-3 text-end"> <button type="button" class="btn btn-outline-primary me-2">Login</button> <a href="inscription.php" class="btn btn-primary">Inscription</a> </div>
+            <div class="col-md-3 text-end"> 
+                <?php if (isset($_SESSION["user"])): ?>
+                    <div class="">
+
+                        <p>Connecté en tant que : <?= $_SESSION["user"]["email"] ?></p>
+                        <a href="logout.php" class="btn btn-outline-primary me-2">Se déconnecter</a> 
+                    </div>
+                <?php else: ?>
+                    <a href="login.php" class="btn btn-outline-primary me-2">Login</a> 
+                    <a href="inscription.php" class="btn btn-primary">Inscription</a> 
+                <?php endif; ?>
+            </div>
         </header>
     </div>
 
